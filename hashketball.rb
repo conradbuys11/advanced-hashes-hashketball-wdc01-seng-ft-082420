@@ -128,7 +128,7 @@ end
 
 def find_info(player_name,key)
   game_hash.each do |team, categories|
-    team[:players].each do |player_hash|
+    categories[:players].each do |player_hash|
       if categories[:player_name] == player_name
         return player_hash[key]
       end
