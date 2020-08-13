@@ -129,7 +129,7 @@ end
 def find_info(player_name,key)
   game_hash.each do |team, categories|
     team[:players].each do |player_hash|
-      if player_hash[:player_name] == player_name
+      if categories[:player_name] == player_name
         return player_hash[key]
       end
     end
@@ -167,7 +167,7 @@ end
 
 def player_stats(player_name)
   game_hash.each do |team, categories|
-    team[:players].each do |player_hash|
+    categories[:players].each do |player_hash|
       if player_hash[:player_name] == player_name
         return player_hash
       end
@@ -178,7 +178,7 @@ end
 def big_shoe_rebounds
   biggest_shoe_player = nil
   game_hash.each do |team, categories|
-    team[:players].each do |player_hash|
+    categories[:players].each do |player_hash|
       if biggest_shoe_player == nil || player_hash[:shoe] > biggest_shoe_player[:shoe]
         biggest_shoe_player = player_hash
       end
