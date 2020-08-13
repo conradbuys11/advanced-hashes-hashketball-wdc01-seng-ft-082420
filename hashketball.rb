@@ -126,4 +126,65 @@ def game_hash
   }
 end
 
+def find_info(player_name,key)
+  game_hash.each do |team, categories|
+    team[:players].each do |player_hash|
+      if player_hash[:player_name] == player_name
+        return player_hash[key]
+      end
+    end
+  end
+end
+
+def num_points_scored(player_name)
+  find_info(player_name,:points)
+end
+
+def shoe_size(player_name)
+  find_info(player_name,:shoe)
+end
+
+def team_colors(team_name)
+  game_hash.each do |team, categories|
+    if team[:team_name] == team_name
+      return team[:colors]
+    end
+  end
+end
+
+def team_names
+  return [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+end
+
+def player_numbers
+  number_arrays = []
+  game_hash.each do |team, categories|
+    team[:players].each do |player_hash|
+      number_arrays.push(player_hash[:number])
+    end
+  end
+end
+
+def player_stats(player_name)
+  game_hash.each do |team, categories|
+    team[:players].each do |player_hash|
+      if player_hash[:player_name] == player_name
+        return player_hash
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  biggest_shoe_player = nil
+  game_hash.each do |team, categories|
+    team[:players].each do |player_hash|
+      if biggest_shoe_player == nil || player_hash[:shoe] > biggest_shoe_player[:shoe]
+        biggest_shoe_player = player_hash
+      end
+    end
+  end
+  biggest_shoe_player[:rebounds]
+end
+
 # Write code here
