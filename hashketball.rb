@@ -159,7 +159,7 @@ end
 def player_numbers
   number_arrays = []
   game_hash.each do |team, categories|
-    team[:players].each do |player_hash|
+    categories[:players].each do |player_hash|
       number_arrays.push(player_hash[:number])
     end
   end
