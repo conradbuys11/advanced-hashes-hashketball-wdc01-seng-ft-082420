@@ -146,7 +146,7 @@ end
 
 def team_colors(team_name)
   game_hash.each do |team, categories|
-    if categories[:team_name] == team_name
+    if team[:team_name] == team_name
       return team[:colors]
     end
   end
@@ -156,11 +156,14 @@ def team_names
   return [game_hash[:home][:team_name], game_hash[:away][:team_name]]
 end
 
-def player_numbers
+def player_numbers(team_name)
   number_arrays = []
+  
   game_hash.each do |team, categories|
-    categories[:players].each do |player_hash|
-      number_arrays.push(player_hash[:number])
+    if categories[:team_name] == team_name
+      categories[:players].each do |player_hash|
+        number_arrays.push(player_hash[:number])
+      end
     end
   end
 end
